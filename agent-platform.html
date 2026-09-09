@@ -107,70 +107,104 @@ body.collapsed .nav-item{justify-content:center;padding:0}
 .collapse-btn{display:flex;align-items:center;gap:12px;color:var(--text-secondary);font-size:14px;padding:0 12px}
 
 /* ---------- AI Chat UI (Trợ lý) ---------- */
-.chat-app-wrap{display:flex;height:calc(100vh - var(--topbar-h) - 64px);min-height:560px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-card);overflow:hidden;position:relative}
-.chat-sidebar{width:280px;flex:0 0 auto;background:oklch(98% .003 250);border-right:1px solid var(--border);padding:16px;display:flex;flex-direction:column;min-height:0}
-.chat-sidebar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.chat-workspace{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text-primary)}
-.chat-workspace .ws-avatar{width:34px;height:34px}
-.chat-search{display:flex;align-items:center;gap:8px;height:40px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0 12px;color:var(--text-muted);flex:0 0 auto}
-.chat-search input{border:none;outline:none;background:transparent;flex:1;color:var(--text-primary)}
-.chat-new{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:40px;border-radius:10px;background:var(--brand-600);color:#fff;font-weight:700;margin:12px 0}
-.chat-new:hover{background:var(--brand-700)}
-.chat-thread-list{display:flex;flex-direction:column;gap:2px;margin-top:4px;flex:1;overflow-y:auto;scrollbar-width:thin}
+.chat-app-wrap{display:flex;height:calc(100vh - var(--topbar-h) - 64px);min-height:560px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;position:relative}
+.chat-sidebar{width:280px;flex:0 0 auto;background:var(--surface);border-right:1px solid var(--border);padding:18px 14px;display:flex;flex-direction:column;min-height:0}
+.chat-sidebar-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:14px}
+.chat-sidebar-titles{min-width:0}
+.chat-sidebar-title{font-weight:700;font-size:15.5px;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-sidebar-sub{font-size:12px;color:var(--text-muted);margin-top:2px}
+.chat-search{display:flex;align-items:center;gap:8px;height:38px;background:oklch(96% .003 250);border:1px solid transparent;border-radius:999px;padding:0 14px;color:var(--text-muted);flex:0 0 auto;margin-bottom:8px}
+.chat-search:focus-within{background:var(--surface);border-color:var(--border-strong)}
+.chat-search input{border:none;outline:none;background:transparent;flex:1;color:var(--text-primary);font-size:13px}
+.chat-new{flex:0 0 auto;display:flex;align-items:center;gap:10px;width:100%;height:42px;padding:0 12px;border-radius:10px;background:var(--brand-50);color:var(--brand-600);font-weight:700;font-size:13.5px;margin:2px 0 6px}
+.chat-new:hover{background:var(--brand-100)}
+.chat-new-icon{display:grid;place-items:center;color:var(--brand-600)}
+.chat-choose-agent{flex:0 0 auto;display:flex;align-items:center;gap:10px;width:100%;height:42px;padding:0 12px;border-radius:10px;background:transparent;color:var(--text-primary);font-weight:600;font-size:13.5px;margin-bottom:8px}
+.chat-choose-agent:hover{background:oklch(96% .003 250)}
+.chat-choose-agent-icon{display:grid;place-items:center;color:var(--text-muted)}
+.chat-choose-agent span:nth-child(2){flex:1;text-align:left}
+.chat-choose-agent .icon{color:var(--text-muted)}
+.chat-thread-list{display:flex;flex-direction:column;gap:0;margin-top:2px;flex:1;overflow-y:auto;scrollbar-width:thin}
 .chat-history-empty{padding:24px 8px;color:var(--text-muted);font-size:12.5px;text-align:center}
-.chat-group-label{padding:14px 10px 6px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.chat-group-label{width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 10px 6px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.chat-group-label:hover{color:var(--text-secondary)}
+.chat-group-label .icon{width:14px;height:14px;transform:rotate(180deg);transition:transform .15s}
+.chat-group-label.collapsed .icon{transform:rotate(0deg)}
 .chat-thread-row{position:relative;display:flex;align-items:center;gap:2px}
-.chat-thread{flex:1;min-width:0;display:flex;align-items:center;gap:10px;text-align:left;padding:10px 10px;border-radius:10px;background:transparent;color:var(--text-primary);border:1px solid transparent}
-.chat-thread:hover{background:var(--brand-50)}
-.chat-thread.active{background:var(--brand-50);border-color:var(--brand-300);color:var(--brand-700);font-weight:700}
-.chat-thread .thread-icon{flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--green-500)}
-.chat-thread .thread-icon.inactive{background:var(--text-muted)}
+.chat-thread{flex:1;min-width:0;display:flex;align-items:center;gap:10px;text-align:left;padding:9px 10px;border-radius:8px;background:transparent;color:var(--text-secondary);border:1px solid transparent}
+.chat-thread:hover{background:oklch(96% .003 250)}
+.chat-thread.active{background:transparent;border-color:transparent;color:var(--text-primary);font-weight:700}
+.chat-thread .thread-icon{display:none}
 .chat-thread .thread-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
-.chat-thread .thread-meta{font-size:11px;color:var(--text-muted);flex:0 0 auto}
+.chat-thread .thread-meta{display:none}
 .thread-kebab{opacity:0;flex:0 0 auto;margin-right:4px}
 .chat-thread-row:hover .thread-kebab,.thread-kebab:has(.kebab-menu){opacity:1}
 .chat-main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--surface)}
-.chat-main-top{height:70px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid var(--border);gap:12px}
-.chat-main-top h1{font-size:20px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chat-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--green-700)}
-.chat-status:before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green-500)}
+.chat-main-top{height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);gap:12px}
+.chat-main-top h1{font-size:16px;font-weight:700;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted)}
+.chat-status:before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green-500)}
 .chat-tools-toggle-group{display:flex;align-items:center;gap:6px;flex:0 0 auto}
-.chat-icon-btn{position:relative;width:40px;height:40px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;color:var(--text-secondary)}
-.chat-icon-btn:hover{background:oklch(94% .004 250)}
-.chat-icon-btn.active{background:var(--brand-50);color:var(--brand-600)}
+.chat-icon-btn{position:relative;width:36px;height:36px;flex:0 0 auto;border-radius:8px;display:grid;place-items:center;color:var(--text-muted)}
+.chat-icon-btn:hover{background:oklch(96% .003 250)}
+.chat-icon-btn.active{background:oklch(96% .003 250);color:var(--text-primary)}
 .icon-btn-dot{position:absolute;top:3px;right:3px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--red-500);color:#fff;font-size:9.5px;font-weight:700;display:grid;place-items:center;line-height:1}
-.chat-stream{flex:1;padding:20px 22px;overflow-y:auto;overflow-x:hidden;background:linear-gradient(180deg,#fff,#f8fafc);scroll-behavior:smooth}
-.chat-message{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.chat-stream{flex:1;padding:28px 32px;overflow-y:auto;overflow-x:hidden;background:var(--surface);scroll-behavior:smooth}
+.chat-message{display:flex;align-items:flex-start;gap:0;margin-bottom:22px}
 .chat-message.assistant{justify-content:flex-start}
 .chat-message.user{justify-content:flex-end}
-.chat-message.user .chat-bubble{background:var(--brand-600);color:#fff}
-.chat-message.assistant .chat-bubble{background:var(--surface);border:1px solid var(--border);color:var(--text-primary)}
-.chat-avatar{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--brand-50);display:grid;place-items:center;color:var(--brand-700);font-weight:800;font-size:12px}
-.chat-message.user .chat-avatar{background:var(--brand-600);color:#fff}
-.chat-bubble{position:relative;max-width:72%;padding:12px 14px;border-radius:12px;box-shadow:var(--shadow-card);font-size:13px;line-height:1.6}
+.user-msg-col{display:flex;flex-direction:column;align-items:flex-end;gap:8px;max-width:72%}
+.chat-message.user .chat-bubble{background:oklch(95.5% .003 250);color:var(--text-primary);max-width:100%}
+.chat-message.assistant .chat-bubble{background:transparent;border:none;color:var(--text-primary);padding:0;box-shadow:none;max-width:100%}
+.chat-avatar{display:none}
+.chat-bubble{position:relative;max-width:72%;padding:11px 14px;border-radius:14px;font-size:13.5px;line-height:1.65}
 .chat-message.user .chat-bubble{border-bottom-right-radius:4px}
-.chat-message.assistant .chat-bubble{border-bottom-left-radius:4px}
-.chat-bubble .source-label{font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase}
+.chat-bubble .source-label{font-size:14.5px;font-weight:700;color:var(--text-primary);margin-bottom:6px}
+.chat-message.assistant .chat-bubble .source-label{margin-top:2px}
 .chat-bubble p{margin:0 0 8px}
 .chat-bubble p:last-child{margin-bottom:0}
-.typing-bubble{padding:14px 16px}
+.typing-bubble{padding:0}
 .typing-dots{display:inline-flex;gap:4px}
 .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:typing-bounce 1.1s infinite ease-in-out}
 .typing-dots span:nth-child(2){animation-delay:.15s}
 .typing-dots span:nth-child(3){animation-delay:.3s}
 @keyframes typing-bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
-.composer-wrap{flex:0 0 auto;padding:14px 20px;border-top:1px solid var(--border);background:var(--surface)}
-.chat-composer{display:flex;align-items:flex-end;gap:12px}
-.chat-composer textarea{flex:1;background:var(--page-bg);border:1px solid var(--border);border-radius:12px;resize:none;min-height:44px;max-height:130px;padding:12px;color:var(--text-primary);outline:none;font:inherit}
-.chat-composer textarea:focus{border-color:var(--brand-400);box-shadow:0 0 0 3px var(--brand-50)}
-.chat-send{flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:var(--brand-600);color:#fff}
+.composer-wrap{flex:0 0 auto;padding:14px 32px 22px;background:var(--surface)}
+.chat-composer{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border-strong);border-radius:999px;padding:6px 8px 6px 8px}
+.composer-tooltip-wrap{position:relative;flex:0 0 auto}
+.chat-composer-add{flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:var(--brand-50);color:var(--brand-600)}
+.chat-composer-add:hover{background:var(--brand-100)}
+.composer-tooltip{position:absolute;bottom:calc(100% + 10px);left:0;background:#1F2430;color:#fff;font-size:11.5px;font-weight:600;padding:7px 12px;border-radius:8px;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .12s;pointer-events:none;z-index:5}
+.composer-tooltip-wrap:hover .composer-tooltip{opacity:1;visibility:visible}
+.chat-composer textarea{flex:1;background:transparent;border:none;resize:none;min-height:24px;max-height:130px;padding:6px 4px;color:var(--text-primary);outline:none;font:inherit;font-size:13.5px}
+.composer-enter-hint{flex:0 0 auto;font-size:11px;font-weight:600;color:var(--text-muted);background:oklch(96% .003 250);border-radius:6px;padding:3px 7px;margin-right:2px}
+.composer-mode-wrap{position:relative;flex:0 0 auto}
+.chat-mode-select{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border-strong);color:var(--text-secondary);font-size:12.5px;font-weight:600}
+.chat-mode-select:hover{border-color:#C6CBD3}
+.composer-menu{position:absolute;bottom:calc(100% + 8px);background:#fff;border:1px solid var(--border-strong);border-radius:10px;box-shadow:var(--shadow-card);min-width:180px;z-index:50;overflow:hidden;padding:4px}
+.composer-menu.attach-menu{left:0}
+.composer-menu.mode-menu{right:0}
+.composer-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border-radius:7px;font-size:13px;color:var(--text-primary);text-align:left}
+.composer-menu button:hover{background:oklch(96% .003 250)}
+.composer-menu .mode-check{margin-left:auto;color:var(--brand-600);font-weight:700}
+.chat-send{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--brand-600);color:#fff}
+.chat-send[hidden]{display:none}
 .chat-send:hover{background:var(--brand-700)}
-.composer-hint{margin-top:8px;font-size:11.5px;color:var(--text-muted)}
+.composer-hint{margin-top:10px;font-size:11.5px;color:var(--text-muted);text-align:center}
+.composer-files-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;justify-content:flex-end}
+.chat-message .composer-files-row{margin-bottom:0}
+.composer-file-chip{display:flex;align-items:center;gap:9px;padding:7px 9px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface);max-width:220px}
+.composer-file-chip .cfc-icon{flex:0 0 auto;width:30px;height:30px;border-radius:8px;background:var(--red-50);color:var(--red-500);display:grid;place-items:center}
+.composer-file-chip .cfc-body{min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.composer-file-chip .cfc-name{font-size:12px;font-weight:600;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:130px}
+.composer-file-chip .cfc-size{font-size:11px;color:var(--text-muted)}
+.composer-file-chip .cfc-remove{flex:0 0 auto;width:22px;height:22px;display:grid;place-items:center;border-radius:6px;color:var(--text-muted)}
+.composer-file-chip .cfc-remove:hover{background:oklch(94% .004 250);color:var(--red-500)}
 
 /* ---------- Citation ---------- */
 .citation-wrap{position:relative;display:inline-block}
 .citation-chip{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 4px;margin-left:2px;border-radius:5px;background:var(--brand-100);color:var(--brand-700);font-size:10.5px;font-weight:700;line-height:1;vertical-align:text-top;position:relative;top:-2px}
-.chat-message.user .citation-chip{background:rgba(255,255,255,.28);color:#fff}
+.chat-message.user .citation-chip{background:rgba(16,24,40,.08);color:var(--text-primary)}
 .citation-chip:hover,.citation-chip.open{background:var(--brand-500);color:#fff}
 .citation-popover{position:fixed;z-index:80;top:0;left:0;width:340px;max-width:min(340px,80vw);background:#fff;border:1px solid var(--border-strong);border-radius:12px;box-shadow:0 20px 50px rgba(16,24,40,.22);padding:14px;text-align:left;color:var(--text-primary);font-weight:400;visibility:hidden}
 .citation-popover.positioned{visibility:visible}
@@ -777,6 +811,10 @@ const I = {
   send:'<path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4z"/>',
   link:'<path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+  chevronDown:'<path d="M6 9l6 6 6-6"/>',
+  chevronRight:'<path d="M9 6l6 6-6 6"/>',
+  clip:'<path d="M8 12l6.5-6.5a3.5 3.5 0 015 5L11 19a5.5 5.5 0 01-8-8L12.5 2.5"/>',
+  stop:'<rect x="6" y="6" width="12" height="12" rx="2"/>',
 };
 const svg = (n, cls='icon') => `<svg class="${cls}" viewBox="0 0 24 24">${I[n]||''}</svg>`;
 
@@ -951,7 +989,8 @@ const state = {route:'chat', kbId:null, view:'list', tab:'documents', q:'', moda
   uploadTab:'file', uploadQueue:[], uploadUrlDraft:'', uploadConnector:'', uploadSyncOn:true,
   listTab:'active', labelFilter:[], labelFilterOpen:false, labelDraft:[], labelQuery:'',
   selected:[], modalIds:null, shareDraft:[], detailEditField:null, queryDraft:'', queryResult:null,
-  chatSessionId:'s1', chatSearch:'', chatOpenCitation:null, chatTyping:null, toolsOpen:null, chatShouldScroll:true,
+  chatSessionId:'s1', chatSearch:'', chatSearchOpen:false, chatOpenCitation:null, chatTyping:null, toolsOpen:null, chatShouldScroll:true,
+  chatMode:'basic', chatModeOpen:false, chatAttachOpen:false, chatComposerFiles:[], chatGroupsCollapsed:{},
   modalSessionId:null, modalCitationRef:null, modalTaskId:null};
 
 function toggleSidebar(){ document.body.classList.toggle('collapsed'); }
@@ -1032,6 +1071,51 @@ function mentionAgent(id){
 function onComposerKeydown(e){
   if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendChatMessage(); }
 }
+function onComposerInput(ta){
+  const hasText = ta.value.trim().length>0;
+  const hint = document.getElementById('composer-enter-hint');
+  if(hint) hint.hidden = !hasText;
+  const sendBtn = document.getElementById('composer-send-btn');
+  if(sendBtn) sendBtn.hidden = !(hasText || state.chatComposerFiles.length || state.chatTyping);
+}
+function toggleChatSearch(){
+  state.chatSearchOpen = !state.chatSearchOpen;
+  if(!state.chatSearchOpen) state.chatSearch='';
+  render();
+  if(state.chatSearchOpen){ const el=document.getElementById('chat-search-input'); if(el) el.focus(); }
+}
+function toggleGroupCollapse(label){
+  state.chatGroupsCollapsed[label] = !state.chatGroupsCollapsed[label];
+  render();
+}
+function toggleChatMode(){
+  state.chatModeOpen = !state.chatModeOpen;
+  state.chatAttachOpen = false;
+  render();
+}
+function setChatMode(mode){
+  state.chatMode = mode;
+  state.chatModeOpen = false;
+  render();
+}
+function toggleChatAttach(){
+  state.chatAttachOpen = !state.chatAttachOpen;
+  state.chatModeOpen = false;
+  render();
+}
+let composerFileSeq = 0;
+function addComposerFile(){
+  composerFileSeq++;
+  state.chatComposerFiles.push({name:'filename dai thi nhu the'+(composerFileSeq>1?' '+composerFileSeq:'')+'.pdf', size:'3MB'});
+  state.chatAttachOpen = false;
+  render();
+  const ta = document.getElementById('composer-input');
+  if(ta) ta.focus();
+}
+function removeComposerFile(idx){
+  state.chatComposerFiles.splice(idx,1);
+  render();
+}
 function mockAssistantReply(session){
   const pool = [
     {agent:null, text:'Tôi đã ghi nhận yêu cầu của bạn. Trợ lý sẽ điều phối tới agent phù hợp trong workspace để xử lý và phản hồi chi tiết ngay sau đây.'},
@@ -1045,13 +1129,16 @@ function sendChatMessage(){
   const ta = document.getElementById('composer-input');
   if(!ta) return;
   const text = ta.value.trim();
-  if(!text) return;
+  const files = state.chatComposerFiles.slice();
+  if(!text && !files.length) return;
   const session = getActiveSession();
-  session.messages.push({id:'m'+Date.now(), role:'user', text, citations:[]});
-  if(session.title==='Hội thoại mới') session.title = text.length>40 ? text.slice(0,40)+'…' : text;
+  session.messages.push({id:'m'+Date.now(), role:'user', text, citations:[], files: files.length?files:undefined});
+  const titleSource = text || files[0].name;
+  if(session.title==='Hội thoại mới') session.title = titleSource.length>40 ? titleSource.slice(0,40)+'…' : titleSource;
   session.updatedAt = 'Vừa xong';
   session.group = 'Hôm nay';
   ta.value = '';
+  state.chatComposerFiles = [];
   state.chatTyping = session.id;
   state.chatShouldScroll = true;
   render();
@@ -1906,8 +1993,10 @@ function renderInlineTaskCard(taskId){
 function renderChatMessage(m, sessionId){
   if(m.role==='user'){
     return `<div class="chat-message user">
-      <div class="chat-bubble"><p>${renderMessageText(m.text, m.citations, sessionId, m.id)}</p></div>
-      <div class="chat-avatar">${escapeHtml((CURRENT_USER||'?')[0])}</div>
+      <div class="user-msg-col">
+        ${m.files && m.files.length ? `<div class="composer-files-row">${m.files.map((f,i)=>renderComposerFileChip(f,i,false)).join('')}</div>` : ''}
+        ${m.text ? `<div class="chat-bubble"><p>${renderMessageText(m.text, m.citations, sessionId, m.id)}</p></div>` : ''}
+      </div>
     </div>`;
   }
   const agent = m.agent ? AGENTS.find(a=>a.id===m.agent) : null;
@@ -1977,28 +2066,50 @@ function renderToolsPanel(){
   </aside>`;
 }
 
+function renderComposerFileChip(f, idx, removable){
+  return `<div class="composer-file-chip">
+    <span class="cfc-icon">${svg('doc','icon icon-sm')}</span>
+    <span class="cfc-body"><span class="cfc-name">${escapeHtml(f.name)}</span><span class="cfc-size">${escapeHtml(f.size)}</span></span>
+    ${removable?`<button class="cfc-remove" title="Xoá tệp" onclick="removeComposerFile(${idx})">${svg('trash','icon icon-sm')}</button>`:''}
+  </div>`;
+}
+
 function viewChat(){
   const session = getActiveSession();
   const groups = groupSessions(filteredSessions());
   const pendingTasksCount = BACKGROUND_TASKS.filter(t=>t.status==='pending').length;
+  const hasDraft = state.chatComposerFiles.length>0;
   return `<section class="chat-app-wrap">
     <aside class="chat-sidebar">
       <div class="chat-sidebar-head">
-        <div class="chat-workspace">
-          <span class="ws-avatar">W</span>
-          <span>Workspace của duclv</span>
+        <div class="chat-sidebar-titles">
+          <div class="chat-sidebar-title">Trung tâm điều phối</div>
+          <div class="chat-sidebar-sub">Điều phối AI phù hợp</div>
         </div>
+        <button class="chat-icon-btn" title="Tìm kiếm hội thoại" onclick="toggleChatSearch()">${svg('search','icon icon-sm')}</button>
       </div>
-      <div class="chat-search">
+      ${state.chatSearchOpen?`<div class="chat-search">
         ${svg('search','icon icon-sm')}
-        <input placeholder="Tìm kiếm hội thoại" value="${escAttr(state.chatSearch)}" oninput="state.chatSearch=this.value;render()">
-      </div>
-      <button class="chat-new" onclick="newChatSession()">${svg('plus','icon icon-sm')} Tạo hội thoại mới</button>
+        <input id="chat-search-input" placeholder="Tìm kiếm hội thoại" value="${escAttr(state.chatSearch)}" oninput="state.chatSearch=this.value;render()">
+      </div>`:''}
+      <button class="chat-new" onclick="newChatSession()">
+        <span class="chat-new-icon">${svg('chat','icon icon-sm')}</span>
+        <span>Hội thoại mới</span>
+      </button>
+      <button class="chat-choose-agent" onclick="toggleToolsPanel('agents')">
+        <span class="chat-choose-agent-icon">${svg('agent','icon icon-sm')}</span>
+        <span>Chọn trợ lý</span>
+        ${svg('chevronRight','icon icon-sm')}
+      </button>
       <div class="chat-thread-list">
-        ${groups.length ? groups.map(g=>`
-          <div class="chat-group-label">${g.label}</div>
-          ${g.items.map(s=>renderThreadItem(s, session.id)).join('')}
-        `).join('') : `<div class="chat-history-empty">Không tìm thấy hội thoại phù hợp</div>`}
+        ${groups.length ? groups.map(g=>{
+          const collapsed = !!state.chatGroupsCollapsed[g.label];
+          return `
+          <button class="chat-group-label ${collapsed?'collapsed':''}" onclick="toggleGroupCollapse('${g.label}')">
+            <span>${g.label}</span>${svg('chevronDown','icon icon-sm')}
+          </button>
+          ${collapsed?'':g.items.map(s=>renderThreadItem(s, session.id)).join('')}
+        `;}).join('') : `<div class="chat-history-empty">Không tìm thấy hội thoại phù hợp</div>`}
       </div>
     </aside>
     <section class="chat-main">
@@ -2020,15 +2131,33 @@ function viewChat(){
         ${state.chatTyping===session.id ? renderTypingIndicator() : ''}
       </section>
       <section class="composer-wrap">
+        ${hasDraft?`<div class="composer-files-row">${state.chatComposerFiles.map((f,i)=>renderComposerFileChip(f,i,true)).join('')}</div>`:''}
         <div class="chat-composer">
-          <textarea id="composer-input" rows="1" placeholder="Nhập yêu cầu hoặc câu hỏi của bạn..." onkeydown="onComposerKeydown(event)"></textarea>
-          <button class="chat-send" onclick="sendChatMessage()" title="Gửi">${svg('send','icon icon-sm')}</button>
+          <div class="composer-tooltip-wrap">
+            <button class="chat-composer-add" title="Đính kèm" onclick="toggleChatAttach()">${svg('plus','icon icon-sm')}</button>
+            <span class="composer-tooltip">Thêm tệp &amp; nội dung khác</span>
+            ${state.chatAttachOpen?`<div class="composer-menu attach-menu">
+              <button onclick="addComposerFile()">${svg('clip','icon icon-sm')} Tải tệp lên</button>
+              <button onclick="addComposerFile()">${svg('folder','icon icon-sm')} Chọn từ thư viện</button>
+            </div>`:''}
+          </div>
+          <textarea id="composer-input" rows="1" placeholder="Mô tả yêu cầu của bạn. Gõ @ để nhập tên trợ lý." onkeydown="onComposerKeydown(event)" oninput="onComposerInput(this)"></textarea>
+          <span id="composer-enter-hint" class="composer-enter-hint" hidden>Enter ↵</span>
+          <div class="composer-mode-wrap">
+            <button class="chat-mode-select" onclick="toggleChatMode()">${state.chatMode==='advanced'?'Nâng cao':'Cơ bản'} ${svg('chevronDown','icon icon-sm')}</button>
+            ${state.chatModeOpen?`<div class="composer-menu mode-menu">
+              <button onclick="setChatMode('basic')">Cơ bản ${state.chatMode==='basic'?'<span class=\"mode-check\">✓</span>':''}</button>
+              <button onclick="setChatMode('advanced')">Nâng cao ${state.chatMode==='advanced'?'<span class=\"mode-check\">✓</span>':''}</button>
+            </div>`:''}
+          </div>
+          <button id="composer-send-btn" class="chat-send" onclick="sendChatMessage()" title="${state.chatTyping===session.id?'Dừng':'Gửi'}" ${(hasDraft||state.chatTyping===session.id)?'':'hidden'}>${state.chatTyping===session.id?svg('stop','icon icon-sm'):svg('send','icon icon-sm')}</button>
         </div>
         <div class="composer-hint">Trợ lý sẽ tự động điều phối yêu cầu tới agent phù hợp trong workspace · Enter để gửi, Shift+Enter để xuống dòng</div>
       </section>
     </section>
     ${state.toolsOpen ? renderToolsPanel() : ''}
-  </section>${state.chatOpenCitation ? `<div class="kebab-backdrop" onclick="toggleCitation(null,null,null)"></div>` : ''}`;
+  </section>${state.chatOpenCitation ? `<div class="kebab-backdrop" onclick="toggleCitation(null,null,null)"></div>` : ''}
+  ${(state.chatModeOpen||state.chatAttachOpen) ? `<div class="kebab-backdrop" onclick="state.chatModeOpen=false;state.chatAttachOpen=false;render()"></div>` : ''}`;
 }
 
 function viewPlaceholder(){
@@ -2815,17 +2944,37 @@ function viewKnowledgeUpload(){
 /* =======================================================================
    RENDER
 ======================================================================= */
+let lastComposerSessionId = null;
 function render(){
   renderNav();
   const v=document.getElementById('view');
   if(state.route==='chat'){
+    const activeSession = getActiveSession();
+    const sameSession = activeSession && activeSession.id===lastComposerSessionId;
+    const prevStream = document.getElementById('chat-stream');
+    const prevScrollTop = prevStream ? prevStream.scrollTop : null;
+    const prevComposer = document.getElementById('composer-input');
+    const prevComposerVal = (sameSession && prevComposer) ? prevComposer.value : '';
+    const prevComposerSel = prevComposer ? prevComposer.selectionStart : null;
+    const hadFocus = document.activeElement === prevComposer;
     v.innerHTML = viewChat();
-    if(state.chatShouldScroll){
-      const stream = document.getElementById('chat-stream');
-      if(stream) stream.scrollTop = stream.scrollHeight;
-      state.chatShouldScroll = false;
+    const stream = document.getElementById('chat-stream');
+    if(stream){
+      if(state.chatShouldScroll){
+        stream.scrollTop = stream.scrollHeight;
+        state.chatShouldScroll = false;
+      } else if(prevScrollTop !== null){
+        stream.scrollTop = prevScrollTop;
+      }
+    }
+    const ta = document.getElementById('composer-input');
+    if(ta && prevComposerVal){
+      ta.value = prevComposerVal;
+      onComposerInput(ta);
+      if(hadFocus){ ta.focus(); if(prevComposerSel!=null) ta.setSelectionRange(prevComposerSel, prevComposerSel); }
     }
     if(state.chatOpenCitation) positionCitationPopover();
+    lastComposerSessionId = activeSession && activeSession.id;
   }
   else if(state.route==='knowledge') v.innerHTML = state.kbId ? viewKnowledgeDetail() : viewKnowledgeList();
   else if(state.route==='knowledge-upload'){ v.innerHTML = viewKnowledgeUpload(); startWizard(); }
