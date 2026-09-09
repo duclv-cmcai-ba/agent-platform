@@ -963,6 +963,35 @@ let CHAT_SESSIONS = [
         'Rủi ro cần theo dõi: chi phí vận chuyển khu vực Miền Trung tăng 8% so với cùng kỳ.',
       ], highlightIndex:1}}
     ]},
+    {id:'s4-m4', role:'user', text:'Bạn tóm tắt giúp tôi 1 câu đánh giá tổng thể về kết quả kinh doanh quý 3, dựa trên toàn bộ báo cáo hiện có.', citations:[]},
+    {id:'s4-m5', role:'assistant', agent:'agent-dataanalyst', text:'Nhìn chung, quý 3/2026 ghi nhận kết quả kinh doanh tích cực: doanh thu tăng 12% so với quý 2 nhờ khu vực Miền Nam dẫn đầu tỷ trọng đóng góp [[c5]], biên lợi nhuận gộp cải thiện lên 34% so với 31% của quý trước [[c6]], trong khi chi phí vận hành được tối ưu giảm 8% nhờ cắt giảm chi phí phần mềm không sử dụng [[c7]].', citations:[
+      {id:'c5', snippet:'Doanh thu quý 3/2026 đạt 146.2 tỷ đồng, tăng 12% so với quý 2/2026 (130.5 tỷ đồng), chủ yếu nhờ khu vực Miền Nam.', doc:{docType:'xlsx', docName:'Bao_cao_KQKD_Q3.xlsx', sheet:'Tổng hợp KQKD', headers:['Chỉ tiêu','Quý 2/2026','Quý 3/2026'], rows:[['Doanh thu (tỷ đồng)','130.5','146.2'],['Tăng trưởng theo quý','—','+12%']], highlightRow:1, highlightCol:2}},
+      {id:'c6', snippet:'Biên lợi nhuận gộp quý 3/2026 đạt 34%, cải thiện so với mức 31% của quý 2/2026, nhờ tối ưu giá vốn hàng bán.', doc:{docType:'docx', docName:'Bao_cao_tai_chinh_Q3.docx', hierarchy:['Phần II · Kết quả kinh doanh','Mục 2. Lợi nhuận gộp'], paragraphs:[
+        'Phần II. Kết quả kinh doanh',
+        'Mục 1. Doanh thu thuần quý 3/2026 đạt 146.2 tỷ đồng, tăng 12% so với quý liền kề.',
+        'Mục 2. Biên lợi nhuận gộp quý 3/2026 đạt 34%, cải thiện so với mức 31% của quý 2/2026, nhờ tối ưu giá vốn hàng bán và cơ cấu lại danh mục sản phẩm.',
+        'Mục 3. Lợi nhuận sau thuế tăng tương ứng 9% so với quý trước.',
+      ], highlightIndex:2}},
+      {id:'c7', snippet:'Chi phí vận hành quý 3/2026 giảm 8% so với quý 2/2026, chủ yếu nhờ cắt giảm chi phí phần mềm không sử dụng và tối ưu chi phí thuê văn phòng.', doc:{docType:'pptx', docName:'Bao_cao_KQKD_Q3_BanLanhDao.pptx', slide:11, totalSlides:14, blockType:'Nội dung', paragraphs:[
+        'Tổng quan chi phí vận hành quý 3/2026 so với quý 2/2026.',
+        'Chi phí vận hành giảm 8% nhờ cắt giảm chi phí phần mềm không sử dụng và tối ưu chi phí thuê văn phòng.',
+        'Đề xuất tiếp tục rà soát các khoản chi phí cố định trong quý 4/2026.',
+      ], highlightIndex:1}},
+    ]},
+    {id:'s4-m6', role:'user', text:'Mức tăng trưởng doanh thu 12% này có được xác nhận thống nhất giữa các báo cáo không?', citations:[]},
+    {id:'s4-m7', role:'assistant', agent:'agent-dataanalyst', text:'Có, cả 3 báo cáo đều thống nhất doanh thu quý 3 tăng 12% so với quý 2[[c8]][[c9]][[c10]].', citations:[
+      {id:'c8', snippet:'Doanh thu (tỷ đồng): Quý 2/2026: 130.5 — Quý 3/2026: 146.2. Tăng trưởng theo quý: +12%.', doc:{docType:'xlsx', docName:'Bao_cao_KQKD_Q3.xlsx', sheet:'Tổng hợp KQKD', headers:['Chỉ tiêu','Quý 2/2026','Quý 3/2026'], rows:[['Doanh thu (tỷ đồng)','130.5','146.2'],['Tăng trưởng theo quý','—','+12%']], highlightRow:1, highlightCol:2}},
+      {id:'c9', snippet:'Mục 1. Doanh thu thuần quý 3/2026 đạt 146.2 tỷ đồng, tăng 12% so với quý liền kề.', doc:{docType:'docx', docName:'Bao_cao_tai_chinh_Q3.docx', hierarchy:['Phần II · Kết quả kinh doanh','Mục 1. Doanh thu thuần'], paragraphs:[
+        'Phần II. Kết quả kinh doanh',
+        'Mục 1. Doanh thu thuần quý 3/2026 đạt 146.2 tỷ đồng, tăng 12% so với quý liền kề.',
+        'Mục 2. Biên lợi nhuận gộp quý 3/2026 đạt 34%, cải thiện so với mức 31% của quý 2/2026.',
+      ], highlightIndex:1}},
+      {id:'c10', snippet:'Tóm tắt KQKD quý 3/2026: doanh thu tăng trưởng 12% so với quý trước, dẫn dắt bởi khu vực Miền Nam.', doc:{docType:'pptx', docName:'Bao_cao_KQKD_Q3_BanLanhDao.pptx', slide:3, totalSlides:14, blockType:'Tiêu đề & tóm tắt', paragraphs:[
+        'Tóm tắt kết quả kinh doanh quý 3/2026.',
+        'Doanh thu tăng trưởng 12% so với quý trước, dẫn dắt bởi khu vực Miền Nam.',
+        'Biên lợi nhuận và chi phí vận hành đều cải thiện so với quý 2/2026.',
+      ], highlightIndex:1}},
+    ]},
   ]},
 ];
 
